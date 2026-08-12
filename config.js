@@ -6,8 +6,8 @@ window.WEDDING_CONFIG = {
   couple: {
     groom: "Pavan",
     bride: "Pooja",
-    groomFull: "Pavan Chopra",
-    brideFull: "Pooja Ostwal",
+    groomFull: "Pavan",
+    brideFull: "Pooja",
     monogram: "P.P",
     tagline: "Two souls, one sacred fire",
   },

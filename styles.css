@@ -1290,12 +1290,6 @@ textarea.rf-input { resize: none; }
 }
 #map-link:active img { transform: scale(.985); }
 
-/* Portrait finale film */
-.film-band.portrait { width: min(66vw, 320px); }
-.film-band.portrait .film-inner { aspect-ratio: 1080 / 1930; }
-.rsvp-block { margin-bottom: 10px; }
-.film-band.portrait { margin-top: 46px; }
-
 /* ═══════════════ FINALE FOOTER — the last impression ═════ */
 #finale {
   position: relative;
