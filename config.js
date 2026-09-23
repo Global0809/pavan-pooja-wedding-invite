@@ -31,7 +31,7 @@ window.WEDDING_CONFIG = {
     },
     {
       id: "dj-night",
-      name: "DJ Night",
+      name: "Sangeet / Live Music",
       icon: "sangeet",
       date: "Friday, 20 Nov 2026",
       time: "7:00 PM",
