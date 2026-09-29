@@ -574,9 +574,9 @@ const petals = (() => {
   const canvas = $("#petals"), c = canvas.getContext("2d");
   let petalDpr = IS_TOUCH ? 1 : Math.min(DPR, 1.25);
   const COLORS = [
-    ["#8C2B47", "#5C1428"],   // rose maroon
-    ["#E5B54B", "#C9922B"],   // marigold
-    ["#F4EBDB", "#E0CDA8"],   // ivory
+    ["#E5B7AD", "#B7857E"],   // soft rose
+    ["#92B5AF", "#587F7C"],   // moonlit sage
+    ["#F4EFDF", "#B9C7C3"],   // moon white
   ];
   /* Pre-render each petal once. Drawing sprites is considerably cheaper than
      rebuilding a gradient and Bezier path for every particle on every frame. */
@@ -619,7 +619,7 @@ const petals = (() => {
     });
   };
 
-  const baseCount = () => (lowPerf ? 2 : IS_TOUCH ? 4 : 8);
+  const baseCount = () => (lowPerf ? 1 : IS_TOUCH ? 2 : 4);
 
   const step = (dt) => {
     if (!running) return;
@@ -701,16 +701,25 @@ const petals = (() => {
     reception: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 3h4l-1.2 7a2.8 2.8 0 1 1-1.6 0z" transform="rotate(-14 9 12)"/><path d="M13 3h4l-1.2 7a2.8 2.8 0 1 1-1.6 0z" transform="rotate(14 15 12)"/><path d="M12 2l.5 1.5M10 1.5l0 1"/></svg>`,
   };
   const wrap = $("#event-cards");
+  const days = new Map();
   CFG.events.forEach((ev) => {
+    if (!days.has(ev.date)) {
+      const day = document.createElement("section");
+      day.className = "event-day";
+      const parts = ev.date.match(/^(\w+), (\d+) (\w+) (\d+)$/);
+      const headingId = `day-${days.size + 1}`;
+      day.setAttribute("aria-labelledby", headingId);
+      day.innerHTML = `<header class="day-heading"><strong>${parts?.[2] || ""}</strong><h3 id="${headingId}">${parts ? `${parts[1]} · ${parts[3]} ${parts[4]}` : ev.date}</h3><p>${days.size === 0 ? "Let the joy begin" : "The day of forever"}</p></header><div class="event-list"></div>`;
+      wrap.appendChild(day);
+      days.set(ev.date, day.querySelector(".event-list"));
+    }
     const card = document.createElement("article");
     card.className = "event-card";
-    card.style.setProperty("--accent", ev.accent);
     card.innerHTML = `
-      <span class="event-ico">${ICONS[ev.icon] || ICONS.wedding}</span>
-      <h3 class="event-name">${ev.name}</h3>
-      <p class="event-line">${ev.line}</p>
-      <p class="event-meta"><b>${ev.date}</b> · ${ev.time}<br>${ev.venue}</p>`;
-    wrap.appendChild(card);
+      <p class="event-time">${ev.time}</p>
+      <div class="event-copy"><h3 class="event-name">${ev.name}</h3><p class="event-line">${ev.line}</p></div>
+      <span class="event-ico" aria-hidden="true">${ICONS[ev.icon] || ICONS.wedding}</span>`;
+    days.get(ev.date).appendChild(card);
   });
 
   let chimed = 0;
@@ -1320,7 +1329,7 @@ const films = (() => {
   const wake = (v) => {
     if (!v.poster && v.dataset.poster) v.poster = v.dataset.poster;
     if (!v.src && v.dataset.src) v.src = v.dataset.src;
-    if (v.paused) v.play().catch(() => {});
+    if (!REDUCED && v.paused) v.play().catch(() => {});
   };
   let tick = () => {};
   if ("IntersectionObserver" in window) {
@@ -1374,18 +1383,26 @@ const films = (() => {
 /* ═══════════════ SOUND TOGGLE ════════════════════════════ */
 (() => {
   const b = $("#sound-toggle");
-  if (audio.isMuted()) b.classList.add("muted");
+  const syncSoundState = () => {
+    const muted = audio.isMuted();
+    b.classList.toggle("muted", muted);
+    b.setAttribute("aria-pressed", String(!muted));
+    b.setAttribute("aria-label", muted ? "Play music" : "Mute music");
+  };
+  syncSoundState();
   b.addEventListener("click", () => {
     if (!audio.hasBgm()) {
       audio.init();
       if (audio.isMuted()) b.classList.toggle("muted", audio.toggleMute());
       audio.startBgm();
       if (!audio.isMuted()) audio.chime();
+      syncSoundState();
       return;
     }
     audio.init();
     b.classList.toggle("muted", audio.toggleMute());
     if (!audio.isMuted()) audio.chime();
+    syncSoundState();
   });
 })();
 
@@ -1394,7 +1411,7 @@ const films = (() => {
   /* Names → letter spans for the cascade entrance */
   const names = $(".names");
   if (names) {
-    names.setAttribute("aria-label", names.textContent.trim());
+    names.setAttribute("aria-label", `${CFG.couple.groom} and ${CFG.couple.bride}`);
     let li = 0;
     const split = (node) => {
       [...node.childNodes].forEach((n) => {
@@ -1426,9 +1443,6 @@ const films = (() => {
     <circle cx="75" cy="13" r="7.5"/>
     <rect class="gem" x="71" y="9" width="8" height="8"/>
   </svg>`;
-  document.querySelectorAll(".sec-head").forEach((h) => {
-    h.insertAdjacentHTML("beforeend", FLOURISH);
-  });
   const headIO = new IntersectionObserver((es) => {
     es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("shown"); headIO.unobserve(e.target); } });
   }, { threshold: 0.5 });
@@ -1470,7 +1484,7 @@ const films = (() => {
   for (let i = 0; i < 24; i++) {
     const p = document.createElementNS(NS, "path");
     p.setAttribute("d", "M0,-88 C6,-76 6,-66 0,-58 C-6,-66 -6,-76 0,-88 Z");
-    p.setAttribute("fill", i % 2 ? "rgba(201,162,75,.5)" : "none");
+    p.setAttribute("fill", i % 2 ? "rgba(229,183,173,.3)" : "none");
     p.setAttribute("stroke", "currentColor");
     p.setAttribute("stroke-width", ".7");
     p.setAttribute("transform", `rotate(${i * 15})`);
