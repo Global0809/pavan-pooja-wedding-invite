@@ -79,12 +79,12 @@ window.WEDDING_CONFIG = {
   },
 
   theme: {
-    maroon: "#E5B7AD",
-    maroonDeep: "#092126",
-    gold: "#E5B7AD",
-    goldSoft: "#F4DFCA",
+    maroon: "#6D1A33",
+    maroonDeep: "#4A0F22",
+    gold: "#C9A24B",
+    goldSoft: "#E5C878",
     ivory: "#F4EBDB",
-    inkOnIvory: "#F4EFDF",
+    inkOnIvory: "#3A2230",
   },
 
   frames: {
@@ -100,7 +100,7 @@ window.WEDDING_CONFIG = {
     path: "assets/frames2/",
     prefix: "s_",
     ext: ".webp",
-    heading: "A moment to remember.",
+    heading: "The Hidden Moment",
     eyebrow: "A sacred moment awaits",
     hint: "Scroll gently to unfold this hidden moment",
     veilText: "A sacred moment awaits",
