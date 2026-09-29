@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-29T07:14:30+05:30",
+  "title": "Design System: Pavan & Pooja",
+  "extensions": {
+    "colorMeta": {
+      "night": { "role": "neutral", "displayName": "Midnight Teal", "tonalRamp": ["oklch(15% 0.04 210)", "oklch(26% 0.04 210)", "oklch(38% 0.04 210)", "oklch(49% 0.04 210)", "oklch(61% 0.04 210)", "oklch(72% 0.04 210)", "oklch(84% 0.04 210)", "oklch(95% 0.04 210)"] },
+      "deep": { "role": "neutral", "displayName": "Deep Evening", "tonalRamp": ["oklch(15% 0.035 215)", "oklch(26% 0.035 215)", "oklch(38% 0.035 215)", "oklch(49% 0.035 215)", "oklch(61% 0.035 215)", "oklch(72% 0.035 215)", "oklch(84% 0.035 215)", "oklch(95% 0.035 215)"] },
+      "surface": { "role": "neutral", "displayName": "Raised Teal", "tonalRamp": ["oklch(15% 0.04 210)", "oklch(26% 0.04 210)", "oklch(38% 0.04 210)", "oklch(49% 0.04 210)", "oklch(61% 0.04 210)", "oklch(72% 0.04 210)", "oklch(84% 0.04 210)", "oklch(95% 0.04 210)"] },
+      "paper": { "role": "neutral", "displayName": "Moonwhite", "tonalRamp": ["oklch(15% 0.022 90)", "oklch(26% 0.022 90)", "oklch(38% 0.022 90)", "oklch(49% 0.022 90)", "oklch(61% 0.022 90)", "oklch(72% 0.022 90)", "oklch(84% 0.022 90)", "oklch(95% 0.022 90)"] },
+      "rose": { "role": "primary", "displayName": "Evening Blush", "tonalRamp": ["oklch(15% 0.052 34)", "oklch(26% 0.052 34)", "oklch(38% 0.052 34)", "oklch(49% 0.052 34)", "oklch(61% 0.052 34)", "oklch(72% 0.052 34)", "oklch(84% 0.052 34)", "oklch(95% 0.052 34)"] },
+      "muted": { "role": "neutral", "displayName": "Mist Teal", "tonalRamp": ["oklch(15% 0.02 193)", "oklch(26% 0.02 193)", "oklch(38% 0.02 193)", "oklch(49% 0.02 193)", "oklch(61% 0.02 193)", "oklch(72% 0.02 193)", "oklch(84% 0.02 193)", "oklch(95% 0.02 193)"] },
+      "line": { "role": "neutral", "displayName": "Teal Rule", "tonalRamp": ["oklch(15% 0.033 212)", "oklch(26% 0.033 212)", "oklch(38% 0.033 212)", "oklch(49% 0.033 212)", "oklch(61% 0.033 212)", "oklch(72% 0.033 212)", "oklch(84% 0.033 212)", "oklch(95% 0.033 212)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Couple Names", "purpose": "Desktop hero names; mobile uses clamp(40px,11.6vw,62px) with line-height 1." },
+      "headline": { "displayName": "Editorial Heading", "purpose": "Section headings with selective blush italic emphasis." },
+      "body": { "displayName": "Reading Text", "purpose": "Base reading style; event descriptions use 14px." },
+      "label": { "displayName": "Practical Detail", "purpose": "Navigation, times and controls; countdown labels add uppercase and 0.1em tracking." },
+      "blessing": { "displayName": "Devanagari Blessing", "purpose": "Ceremonial blessing; 12px on narrow mobile." }
+    },
+    "shadows": [
+      { "name": "portal-glow", "value": "0 0 48px #f5d79836", "purpose": "Warm light around the wedding-world doorway only." },
+      { "name": "sound-control", "value": "0 4px 16px #0003", "purpose": "Separate the fixed music control from underlying content." }
+    ],
+    "motion": [
+      { "name": "action-color", "value": "background .2s", "purpose": "Button and seal hover feedback." },
+      { "name": "action-arrow", "value": "transform .25s", "purpose": "Translate action arrows 4px on hover." },
+      { "name": "letter-enter", "value": ".9s cubic-bezier(.16,1,.3,1)", "purpose": "Hero copy enters from 12px below with opacity." },
+      { "name": "opening-doors", "value": "1.3s cubic-bezier(.76,0,.24,1)", "purpose": "Split the introductory doors after preparation." },
+      { "name": "portal-light", "value": "4s ease-in-out infinite", "purpose": "Moving light inside the visible finale doorway." },
+      { "name": "portal-breathe", "value": "3s ease-in-out infinite", "purpose": "Doorway outline opacity and subtle scale." },
+      { "name": "reduced-motion", "value": "prefers-reduced-motion: reduce", "purpose": "Disable CSS animation and transitions, hide petals and show the sanctum poster." }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "800px" },
+      { "name": "mobile", "value": "580px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Directions Button", "kind": "button", "refersTo": "button-primary",
+      "description": "Blush-filled primary link with a directional arrow.",
+      "html": "<a class=\"ds-button\" href=\"https://maps.app.goo.gl/xFVpkWu4EctdBw7t5\" target=\"_blank\" rel=\"noopener\">Get directions <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 18L18 6M6 6h12v12\"/></svg></a>",
+      "css": ".ds-button{display:inline-flex;align-items:center;gap:30px;min-height:50px;padding:12px 22px;border-radius:8px;background:var(--rose,#e5b7ad);color:var(--deep,#092126);font:600 12px/1.7 var(--body,Manrope,Arial,sans-serif);text-decoration:none;transition:background .2s}.ds-button svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}.ds-button:hover{background:#f3ccbf}.ds-button:hover svg{transform:translateX(4px)}.ds-button:focus-visible{outline:2px solid var(--rose,#e5b7ad);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-button,.ds-button svg{transition:none}}"
+    },
+    {
+      "name": "Celebrations Text Link", "kind": "button", "refersTo": "text-link",
+      "description": "Lightweight underlined navigation action.",
+      "html": "<a class=\"ds-link\" href=\"#events\">Discover the celebrations <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;gap:18px;min-height:44px;border-bottom:1px solid var(--rose,#e5b7ad);color:var(--rose,#e5b7ad);font:400 12px/1.7 var(--body,Manrope,Arial,sans-serif);text-decoration:none}.ds-link svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}.ds-link:hover svg{transform:translateX(4px)}.ds-link:focus-visible{outline:2px solid var(--rose,#e5b7ad);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-link svg{transition:none}}"
+    },
+    {
+      "name": "Invitation Navigation", "kind": "nav",
+      "description": "Monogram, wedding date and a single programme link.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Invitation navigation\"><a class=\"ds-wordmark\" href=\"#hero\">P<span>·</span>P</a><span class=\"ds-date\">21 November 2026</span><a class=\"ds-nav-action\" href=\"#events\">The celebrations ↗</a></nav>",
+      "css": ".ds-nav{min-height:94px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line,#416065);color:var(--paper,#f4efdf);font:400 12px/1.7 var(--body,Manrope,Arial,sans-serif)}.ds-nav a{color:inherit;text-decoration:none}.ds-wordmark{font:400 32px/1 var(--display,'Bodoni Moda','Times New Roman',serif);letter-spacing:-.02em}.ds-wordmark span{color:var(--rose,#e5b7ad);padding:0 5px}.ds-date{letter-spacing:.1em;text-transform:uppercase;color:var(--muted,#b4c7c6)}.ds-nav-action{min-height:44px;display:inline-flex;align-items:center}.ds-nav a:focus-visible{outline:2px solid var(--rose,#e5b7ad);outline-offset:6px}@media(max-width:800px){.ds-nav{min-height:72px}.ds-date{display:none}}@media(max-width:580px){.ds-nav{min-height:66px}.ds-wordmark{font-size:26px}}"
+    },
+    {
+      "name": "Programme Row", "kind": "custom", "refersTo": "event-row",
+      "description": "Open ruled event layout; sample labels describe structure, not a new schedule entry.",
+      "html": "<article class=\"ds-event\"><p class=\"ds-time\">7:15 PM</p><div><h3 class=\"ds-event-name\">Phere / Hast Milap</h3><p class=\"ds-event-line\">21 November 2026</p></div></article>",
+      "css": ".ds-event{display:grid;grid-template-columns:94px minmax(0,1fr) 28px;gap:28px;padding:30px 0;border-bottom:1px solid var(--line,#416065);color:var(--paper,#f4efdf);font:400 14px/1.7 var(--body,Manrope,Arial,sans-serif)}.ds-time{margin:0;padding-top:6px;font-size:12px;color:var(--rose,#e5b7ad);white-space:nowrap;font-variant-numeric:tabular-nums}.ds-event-name{margin:0;font:400 clamp(26px,2.6vw,35px)/1.1 var(--display,'Bodoni Moda','Times New Roman',serif)}.ds-event-line{margin:9px 0 0;color:var(--muted,#b4c7c6)}@media(max-width:800px){.ds-event{grid-template-columns:75px 1fr;gap:12px}}@media(max-width:580px){.ds-event{grid-template-columns:68px minmax(0,1fr);gap:14px;padding:24px 0}.ds-event-name{font-size:27px}}"
+    },
+    {
+      "name": "Wedding World Action", "kind": "button", "refersTo": "portal-action",
+      "description": "Outlined action beneath the luminous arch; links to the separate world route.",
+      "html": "<a class=\"ds-portal-action\" href=\"./world/index.html\"><strong>Enter the wedding world</strong><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-portal-action{display:inline-flex;align-items:center;gap:22px;padding:15px 20px;border:1px solid var(--rose,#e5b7ad);border-radius:8px;background:var(--surface,#17383d);color:var(--paper,#f4efdf);text-decoration:none;font:400 12px/1.7 var(--body,Manrope,Arial,sans-serif)}.ds-portal-action strong{font-weight:600}.ds-portal-action svg{width:22px;height:22px;fill:none;stroke:var(--rose,#e5b7ad);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s}.ds-portal-action:hover{background:#24484d}.ds-portal-action:hover svg{transform:translateX(4px)}.ds-portal-action:focus-visible{outline:2px solid var(--rose,#e5b7ad);outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-portal-action svg{transition:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Moonlit Celebration",
+    "overview": "The implemented evening world pairs midnight teal with warm moonwhite lettering and blush accents. Editorial type, open programme rows and framed origami imagery make the invitation intimate and ceremonial without obscuring practical details.",
+    "keyCharacteristics": ["Dark, tonal surfaces with one contrasting countdown band.", "Expressive serif names beside quiet, legible sans-serif information.", "Arched imagery and a glowing doorway as recurring signatures."],
+    "rules": [{ "name": "The Evening Rule", "body": "Keep the invitation's midnight-teal foundation; the earlier burgundy/gold and Comic Sans glass treatment is superseded.", "section": "colors" }],
+    "dos": ["Do preserve the evening palette, serif/sans hierarchy and arched image language.", "Do keep programme text, keyboard focus and touch targets clear on mobile.", "Do respect reduced-motion preferences and retain usable media controls."],
+    "donts": ["Don't restore the superseded burgundy/gold or Comic Sans glass styling.", "Don't turn the open programme into a grid of elevated cards.", "Don't spread portal glow, blur or ornamental animation across ordinary content."]
+  }
+}
